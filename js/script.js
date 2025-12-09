@@ -24,7 +24,7 @@ function renderUsers () {
       const usersInfo = data;
       const displayUsers = usersInfo.map(user => {
         console.log(user)
-        const {name, username, phone, email, company, address} = user
+        const {id, name, username, phone, email, company, address} = user
         // console.log(name, username, phone, email, company, address)
         const template = `
           <li>
@@ -34,6 +34,7 @@ function renderUsers () {
                 <p><strong>Teléfono:</strong> ${phone}</p>
                 <p><strong>Email:</strong> ${email}</p>
               </div>
+              <img src="/assets/img/${id}.jpeg" alt="${name}">
               <div>
                 <p><strong>Compañía:</strong> ${company.name}</p>
                 <p><strong>Dirección:</strong> ${address.street}, ${address.suite}, ${address.city}</p>
