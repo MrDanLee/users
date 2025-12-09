@@ -29,10 +29,10 @@ function renderUsers () {
         const template = `
           <li>
               <div class="card">
-                  <p><strong>Nombre:</strong> ${name}</p>
-                  <p><strong>Username:</strong> ${username}</p>
-                  <p><strong>Teléfono:</strong> ${phone}</p>
-                  <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Nombre:</strong> ${name}</p>
+                <p><strong>Username:</strong> ${username}</p>
+                <p><strong>Teléfono:</strong> ${phone}</p>
+                <p><strong>Email:</strong> ${email}</p>
               </div>
               <div>
                 <p><strong>Compañía:</strong> ${company.name}</p>
