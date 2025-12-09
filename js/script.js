@@ -30,7 +30,7 @@ function renderUsers () {
           <li>
               <div class="card">
                   <p><strong>Nombre:</strong> ${name}</p>
-                  <p><strong>Edad:</strong> ${username}</p>
+                  <p><strong>Username:</strong> ${username}</p>
                   <p><strong>Teléfono:</strong> ${phone}</p>
                   <p><strong>Email:</strong> ${email}</p>
               </div>
