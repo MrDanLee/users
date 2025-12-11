@@ -1,4 +1,5 @@
-console.log('hello world')
+const listaUsuarios = document.getElementById('listaUsuarios');
+
 /*
 Nombre 
 Edad
@@ -10,65 +11,52 @@ Compañía
 Dirección
 */
 
-const listaUsuarios = document.getElementById('listaUsuarios');
-
-function renderUsers () {
+function getUsers () {
   fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to load resource')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(console.log(response.status))
+    }
+    return response.json()
+  })
+  .then(data => {
+    const users = data.map( user => {
+      const {id, address} = user 
+      return {...user,
+        age: randomAge(18, 65),
+        img: `../assets/img/${id}.jpeg`,
+        address: `${address.street}, ${address.suite}, ${address.city}`,
       }
-      return response.json()
-    })
-    .then(data => {
-      const usersInfo = data;
-      const displayUsers = usersInfo.map(user => {
-        console.log(user)
-        const {id, name, username, phone, email, company, address} = user
-        // console.log(name, username, phone, email, company, address)
-        const template = `
-          <li>
-              <div class="card">
-                <p><strong>Nombre:</strong> ${name}</p>
-                <p><strong>Username:</strong> ${username}</p>
-                <p><strong>Teléfono:</strong> ${phone}</p>
-                <p><strong>Email:</strong> ${email}</p>
-              </div>
-              <img src="/assets/img/${id}.jpeg" alt="${name}">
-              <div>
-                <p><strong>Compañía:</strong> ${company.name}</p>
-                <p><strong>Dirección:</strong> ${address.street}, ${address.suite}, ${address.city}</p>
-              </div>
-          </li>
-        `;
-        return template;
-      }).join("")  
-      listaUsuarios.innerHTML = displayUsers;
-    })
-    .catch(error => console.log(error))
-  }
-  
-  renderUsers()
-  
-  // for (i = 0; i < usersInfo.length; i++ ) {
-    //   console.log(usersInfo[0])
-    //   const {name, username, phone, email, company, address} = usersInfo[i]
-  //   console.log(name, username, phone, email, company, address)
-    // const template = `
-    // <li>
-    //     <div>
-    //         <p>${name}</p>
-    //         <p>${username}</p>
-    //         <p>${phone}</p>
-    //         <p>${email}</p>
-    //     </div>
-    //     <p>${company}</p>
-    //     <p>${address}</p>
-    // </li>
-    // `;
-    // return template;
-// }
-// listaUsuarios.innerHTML = template;
+    }).map(user => {
+      const {name, age, username, img, phone, email, company: {name: companyName}, address} = user
+      const template = `
+        <li>
+          <div class="user-content">
+            <div class="user-info" >
+              <h2><strong>Nombre:</strong>${name}</h2>
+              <p><strong>Edad:</strong>${age}</p>
+              <p><strong>Username:</strong>${username}</p>
+              <p><strong>Teléfono:</strong>${phone}}</p>
+              <p><strong>Email:</strong>${email}</p>
+            </div>
+            <div class="user-image">
+              <img src="${img}" alt="${name}">            
+            </div>
+          </div>
+          <div class="user-company">
+            <p><strong>Compañía:</strong>${companyName}</p>
+            <p><strong>Dirección:</strong>${address}</p>
+          </div>
+        </li>
+      `
+      return template
+    }).join("")
+    listaUsuarios.innerHTML = users
+  })
+}
 
-// const {id, name, username, email, adress} = usersInfo
-// console.log(usersInfo[0])
+getUsers()
+
+function randomAge (min, max) {
+  return Math.floor(Math.random() * (max - min +1)) + min
+}

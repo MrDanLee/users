@@ -1,0 +1,35 @@
+/* ul {
+  display: flex ;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items:start;
+  border: 1px solid gray;
+  padding: 10px;
+  gap: 20px;
+  border-radius: 5px;
+  background-color: white;
+  width: 420px;
+}
+
+li img {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+}
+li p {
+  padding-right: 10px;
+}
+.card  {
+
+  border: 1px solid gray; 
+  border-radius: 5px; 
+  padding-left: 13px;
+} */
